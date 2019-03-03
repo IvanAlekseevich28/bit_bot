@@ -62,13 +62,12 @@ void bot_environment::time_to_sex()
 
 void bot_environment::time_to_kill()
 {
-    unsigned min_fitness = population.last()->get_value();
-    if (min_fitness > 5) min_fitness -= 4;
+
     auto iter = population.begin();
 
-    while (min_fitness >= iter.key()) {
-        population.erase(iter);
-        iter++;
+    while (static_cast<unsigned>(population.size()) >= maxlimit_of_population) {
+        population.erase(iter++);
+//        iter++;
     }
 
 }
