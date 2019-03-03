@@ -7,9 +7,9 @@ int main(int argc, char *argv[])
     QCoreApplication a(argc, argv);
     srand(time(NULL));
 
-   bot_environment P(40);
+   bot_environment P(16);
    P.show_Generation();
-   for (int i = 0; i < 10; i++)
+   for (int i = 0; i < 99; i++)
    {
 
        P.time_to_sex();
