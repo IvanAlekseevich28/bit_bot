@@ -1,6 +1,6 @@
 #include "bot_environment.h"
 #include <QDebug>
-#include <QList>
+#include <QVector>
 
 
 bot_environment::bot_environment(unsigned maxlimit_of_population)
@@ -29,13 +29,34 @@ void bot_environment::show_Generation()const
 }
 void bot_environment::time_to_sex()
 {
+//    generation += 1;
+
     auto iter = population.begin();
 
-
+    QVector<bit_bot*> population_vec;
 
     while (iter != population.end())
     {
-
+        population_vec.push_back(iter.value());
         iter++;
     }
+    int size_this_generation = population.size();
+    for (int i = 0; i < size_this_generation / 2 ;i++)
+    {
+        while (true)
+        {
+            bit_bot* parent1 = population_vec.back();
+            population_vec.pop_back();
+            bit_bot* parent2 = population_vec[rand() % (population_vec.size() - 1)];
+            if (parent2->get_value() + 2 >= parent1->get_value())
+            {
+                bit_bot* new_bot = bit_bot::to_multiply(*parent1, *parent2);
+                population.insert(new_bot->get_value(), new_bot);
+                break;
+            } else population_vec.push_back(parent1);
+        }
+
+    }
+
 }
+

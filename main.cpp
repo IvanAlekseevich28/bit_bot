@@ -11,5 +11,8 @@ int main(int argc, char *argv[])
    P.show_Generation();
    P.time_to_sex();
    P.show_Generation();
+   P.time_to_sex();
+   P.show_Generation();
+
     return a.exec();
 }
