@@ -29,7 +29,7 @@ void bot_environment::show_Generation()const
 }
 void bot_environment::time_to_sex()
 {
-//    generation += 1;
+   generation += 1;
 
     auto iter = population.begin();
 
@@ -56,6 +56,19 @@ void bot_environment::time_to_sex()
             } else population_vec.push_back(parent1);
         }
 
+    }
+
+}
+
+void bot_environment::time_to_kill()
+{
+    unsigned min_fitness = population.last()->get_value();
+    if (min_fitness > 5) min_fitness -= 4;
+    auto iter = population.begin();
+
+    while (min_fitness >= iter.key()) {
+        population.erase(iter);
+        iter++;
     }
 
 }
